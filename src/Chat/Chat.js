@@ -5,6 +5,7 @@ import ChatBox from './ChatBox/ChatBox';
 import ChatInput from './ChatInput/ChatInput';
 import shopData from '../data/shop.json';
 import answersData from '../data/answers.json';
+import { ROLE } from '../constants';
 
 class Chat extends Component {
   constructor(props, context) {
@@ -27,13 +28,41 @@ class Chat extends Component {
     }, 1000);
   }
 
+  onInput = (event) => {
+    this.setState({
+      userMessages: event.target.value,
+    });
+  };
+
+  onSubmit = () => {
+    if (this.state.userMessages.length > 0) {
+      const userMessage = { text: this.state.userMessages, role: ROLE.CUSTOMER };
+      const messages = this.state.messages.concat(userMessage);
+      const storeMessage = answersData.filter((answer) => {
+        return answer.tags.reduce((accumlator, currentValue) => {
+          if (this.state.userMessages.includes(currentValue)) return true;
+          return false;
+        }, false);
+      });
+      const allMessages = messages.concat(storeMessage);
+      this.setState({
+        messages: allMessages,
+        userMessages: '',
+      });
+    }
+  };
+
   render() {
     const { shop, messages } = this.state;
     return (
       <main className="Chat">
         <ChatHeader shop={shop} />
         <ChatBox messages={messages} />
-        <ChatInput />
+        <ChatInput
+          onInput={this.onInput}
+          onSubmit={this.onSubmit}
+          inputValue={this.state.userMessages}
+        />
       </main>
     );
   }
