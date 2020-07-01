@@ -38,7 +38,6 @@ class Chat extends Component {
     if (this.state.userMessages.length > 0) {
       const userMessage = { text: this.state.userMessages, role: ROLE.CUSTOMER };
       const messages = this.state.messages.concat(userMessage);
-      console.log(this.state.userMessages);
       const storeMessages = answersData.filter((answer) => {
         return answer.tags.reduce((accumlator, currentValue) => {
           if (accumlator) return true;
