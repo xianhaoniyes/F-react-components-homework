@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Chat.scss';
+import '../index.scss';
 import ChatHeader from './ChatHeader/ChatHeader';
 import ChatBox from './ChatBox/ChatBox';
 import ChatInput from './ChatInput/ChatInput';
@@ -56,7 +56,7 @@ class Chat extends Component {
   render() {
     const { shop, messages } = this.state;
     return (
-      <main className="Chat">
+      <main className="Main">
         <ChatHeader shop={shop} />
         <ChatBox messages={messages} />
         <ChatInput
