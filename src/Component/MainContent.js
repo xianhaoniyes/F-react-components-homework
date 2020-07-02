@@ -18,8 +18,10 @@ const MainContent = (props) => {
   } else {
     content = (
       <section className="MainContent">
-        <header>Coming Soon</header>
-        <Link to="/">Back to Home</Link>
+        <header>Coming Soon...</header>
+        <Link className="link" to="/">
+          Back to Home
+        </Link>
       </section>
     );
   }
