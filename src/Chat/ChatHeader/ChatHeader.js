@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import '../../index.scss';
 import './ChatHeader.scss';
 
 class ChatHeader extends Component {
@@ -9,6 +11,10 @@ class ChatHeader extends Component {
     };
     return (
       <header className="ChatHeader">
+        <Link className="ChatbackLink" to="/">
+          {' '}
+          back{' '}
+        </Link>
         <div className="logo" style={logoStyle} />
         <h1>{shop.name}</h1>
       </header>
